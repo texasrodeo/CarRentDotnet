@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace CarRentDotnet.Models
 {
-    public class DBInizializer: DropCreateDatabaseIfModelChanges<AutoParkContext>
+    public class DBInizializer: DropCreateDatabaseAlways<AutoParkContext>
     {
         protected override void Seed(AutoParkContext db)
         {

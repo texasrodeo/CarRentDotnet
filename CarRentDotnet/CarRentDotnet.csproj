@@ -178,13 +178,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SendRequest.cshtml" />
     <Content Include="Views\Home\ShowCars.cshtml" />
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Home\ShowRequsts.cshtml" />
+    <Content Include="Views\Home\AddCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

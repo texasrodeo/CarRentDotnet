@@ -20,8 +20,9 @@ namespace CarRentDotnet.Controllers
         {
 
             IEnumerable<Car> cars = autoParkContext.Cars;
+            ViewBag.Count = cars.Count();
             ViewBag.Cars = cars;
-            ViewBag.Count = ViewBag.Cars.Count;
+             
             return View();
         }
 
@@ -48,6 +49,13 @@ namespace CarRentDotnet.Controllers
             // сохраняем в бд все изменения
             autoParkContext.SaveChanges();
             return "Запрос на аренду отправлен";
+        }
+
+        public ActionResult AddCar(Car car)
+        {
+            autoParkContext.Cars.Add(car);
+            autoParkContext.SaveChanges();
+            return View();
         }
 
         public ActionResult About()
