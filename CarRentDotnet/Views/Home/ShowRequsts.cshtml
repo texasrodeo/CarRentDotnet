@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список запросов на аренду</title>
+</head>
+<body>
+    <h1>Список запросов на аренду</h1>
+    @if (ViewBag.Count != 0)
+    {
+        <table border="1" cellpadding="3">
+            <tr>
+                <th>Id запроса</th>
+                <th>Id автомобиля</th>
+                <th>Дата начала аренды</th>
+                <th>Дата окончания аренды</th>
+            </tr>
+            @foreach (var c in ViewBag.Requests)
+            {
+
+                <tr>
+                    <th>@c.Id</th>
+                    <th>@c.CarId</th>
+                    <th>@c.Start</th>
+                    <th>@c.End</th>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h1>Здесь пока ничего нет</h1>
+    }
+    <a href="/Home/Index">На главную</a>
+
+    <div>
+    </div>
+</body>
+</html>
