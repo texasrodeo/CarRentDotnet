@@ -39,8 +39,11 @@ namespace CarRentDotnet.Controllers
             ViewBag.CarId = id;
             return View();
         }
+
+
+      
         [HttpPost]
-        public string SendRequest(Contract contract)
+        public ActionResult SendRequest(Contract contract)
         {
             
                 
@@ -48,14 +51,47 @@ namespace CarRentDotnet.Controllers
             autoParkContext.Contracts.Add(contract);
             // сохраняем в бд все изменения
             autoParkContext.SaveChanges();
-            return "Запрос на аренду отправлен";
+            return View("Success");
         }
 
-        public ActionResult AddCar(Car car)
+
+        [HttpGet]
+        public ActionResult AddCar()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public RedirectResult AddCar(Car car)
         {
             autoParkContext.Cars.Add(car);
             autoParkContext.SaveChanges();
+            return Redirect("/Home/ShowCars");
+        }
+
+        [HttpGet]
+        public ActionResult AlterCar(int id)
+        {
+            ViewBag.Car = autoParkContext.GetCarById(id);
             return View();
+        } 
+
+        [HttpPost]
+        public RedirectResult AlterCar(Car car)
+        {
+            autoParkContext.AlterCar(car);
+            autoParkContext.SaveChanges();
+            return Redirect("/Home/ShowCars");
+        }
+
+
+        [HttpGet]
+        public RedirectResult DeleteCar(int id)
+        {
+            autoParkContext.removeCarById(id);
+            autoParkContext.SaveChanges();
+            return Redirect("/Home/ShowCars");
         }
 
         public ActionResult About()

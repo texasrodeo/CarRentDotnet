@@ -184,6 +184,7 @@
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Home\ShowRequsts.cshtml" />
     <Content Include="Views\Home\AddCar.cshtml" />
+    <Content Include="Views\Home\AlterCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

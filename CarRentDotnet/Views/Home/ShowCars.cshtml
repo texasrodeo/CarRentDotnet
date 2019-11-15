@@ -34,11 +34,14 @@
                 @if (b.Avaliability)
                 {
                     <td><p>Машина доступна</p></td>
-                    <td><p><a href="/Home/SendRequest/@b.Id">Купить</a></p></td>
+                    <td><p><a href="/Home/SendRequest/@b.Id">Отправить запрос на аренду</a></p></td>
+                    <td><p><a href="/Home/DeleteCar/@b.Id">Удалить автомобиль</a></p></td>
                 }
+
                 else
                 {
                     <td><p>Машина недоступна</p></td>
+                    <td><p><a href="/Home/DeleteCar/@b.Id">Удалить автомобиль</a></p></td>
                 }
 
 
