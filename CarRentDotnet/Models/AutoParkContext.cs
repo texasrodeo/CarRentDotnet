@@ -30,6 +30,7 @@ namespace CarRentDotnet.Models
             c.Info = car.Info;
             c.Price = car.Price;
             c.Brand = car.Brand;
+            c.Avaliability = car.Avaliability;
         }
 
         public Car GetCarById(int id)

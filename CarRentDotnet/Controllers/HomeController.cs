@@ -32,6 +32,19 @@ namespace CarRentDotnet.Controllers
             ViewBag.Count = ViewBag.Requests.Count;
             return View();
         }
+        public ActionResult ShowApprovedContracts()
+        {
+            ViewBag.Requests = getApprovedContracts(autoParkContext.Contracts);
+            ViewBag.Count = ViewBag.Requests.Count;
+            return View();
+        }
+        public ActionResult ShowAllContracts()
+        {
+            ViewBag.Requests = autoParkContext.Contracts;
+            ViewBag.Count = ViewBag.Requests.Count;
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult SendRequest(int id)
@@ -118,5 +131,16 @@ namespace CarRentDotnet.Controllers
             }
             return result;
         }
+        private IEnumerable<Contract> getApprovedContracts(IEnumerable<Contract> contracts)
+        {
+            List<Contract> result = new List<Contract>();
+            foreach (Contract c in contracts)
+            {
+                if (c.IsApproved)
+                    result.Add(c);
+            }
+            return result;
+        }
+       
     }
 }
