@@ -26,21 +26,15 @@ namespace CarRentDotnet.Controllers
             return View();
         }
 
-        public ActionResult ShowRequsts()
+        [HttpGet]
+        public ActionResult ShowContracts()
         {
-            ViewBag.Requests = getRequests(autoParkContext.Contracts);
-            ViewBag.Count = ViewBag.Requests.Count;
-            return View();
-        }
-        public ActionResult ShowApprovedContracts()
-        {
-            ViewBag.Requests = getApprovedContracts(autoParkContext.Contracts);
-            ViewBag.Count = ViewBag.Requests.Count;
-            return View();
-        }
-        public ActionResult ShowAllContracts()
-        {
-            ViewBag.Requests = autoParkContext.Contracts;
+            if(Request.Params["sort"]=="all")
+                ViewBag.Requests = getAllContracts(autoParkContext.Contracts);
+            else if(Request.Params["sort"] == "requests")
+                ViewBag.Requests = getRequests(autoParkContext.Contracts);
+            else 
+                ViewBag.Requests = getApprovedContracts(autoParkContext.Contracts);
             ViewBag.Count = ViewBag.Requests.Count;
             return View();
         }
@@ -58,13 +52,19 @@ namespace CarRentDotnet.Controllers
         [HttpPost]
         public ActionResult SendRequest(Contract contract)
         {
+
+            if (DateTime.Compare(contract.Start, contract.End) <= 0)
+            {
+                // добавляем информацию о покупке в базу данных
+                autoParkContext.Contracts.Add(contract);
+                // сохраняем в бд все изменения
+                autoParkContext.SaveChanges();
+                return View("Success");
+            }
+            else
+                return View("Error");
             
-                
-            // добавляем информацию о покупке в базу данных
-            autoParkContext.Contracts.Add(contract);
-            // сохраняем в бд все изменения
-            autoParkContext.SaveChanges();
-            return View("Success");
+            
         }
 
 
@@ -140,6 +140,11 @@ namespace CarRentDotnet.Controllers
                     result.Add(c);
             }
             return result;
+        }
+
+        private IEnumerable<Contract> getAllContracts(IEnumerable<Contract> contracts)
+        {
+            return contracts.ToList();
         }
        
     }
