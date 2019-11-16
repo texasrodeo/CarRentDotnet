@@ -62,7 +62,12 @@ namespace CarRentDotnet.Controllers
                 return View("Success");
             }
             else
+            {
+                
+                ViewBag.Ref = "/Home/SendRequest/"+contract.CarId.ToString();
                 return View("Error");
+            }
+                
             
             
         }
